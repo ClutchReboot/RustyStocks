@@ -1,6 +1,5 @@
 # Let's create a txt file with the README content.
 
-readme_content = """
 # Rusty Stocks
 
 Rusty Stocks is a command-line tool built in Rust that allows you to gather and view data on multiple stocks using the Stock Pulse API on RapidAPI. It stores your settings locally, so you don't have to repeatedly input your API keys or remember which stocks you frequently track.
