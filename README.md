@@ -35,6 +35,9 @@ Rusty Stocks is a command-line tool built in Rust that allows you to gather and 
 
 ## Usage
 
+This tool is used with [Stock Pulse](https://rapidapi.com/manwilbahaa/api/yahoo-finance127)'s endpoint on RapidAPI.
+Make sure to sign up and get a free API key.
+
 After running the tool for the first time, you will be prompted to enter your API key for Stock Pulse's API on RapidAPI. You can also specify the stocks you'd like to track.
 
 Basic usage:
