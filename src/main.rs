@@ -6,7 +6,7 @@ use serde_json::Value;
 
 #[derive(Parser)]
 pub struct Cli {
-    #[arg(long, help="Hostname StockPulse provided. Example: 'https://fake.not_real_link.com:443'")]
+    #[arg(long, help="Hostname RapidAPI provided. Example: 'fake-finance123.p.rapidapi.com'")]
     host: Option<String>,
     #[arg(short, long, help="Provided from StockPulse at RapidAPI's marketplace here: https://rapidapi.com/manwilbahaa/api/yahoo-finance127")]
     api_key: Option<String>,
@@ -32,7 +32,7 @@ async fn main() -> Result<(), std::io::Error> {
     info!("Calling Stock Pulse.");
     debug!("Config {:?}", config);
     let result: Value = StockPulseApi{host: config.host, api_key: config.api_key}
-        .request_multi_quote(&config.stocks).await.unwrap();
+        .request_multi_quote(&config.stocks, &"https".to_string()).await.unwrap();
 
     info!("Formating Stock Pulse's response.");
     format_stock_data(&result);

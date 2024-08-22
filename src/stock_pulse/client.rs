@@ -23,9 +23,9 @@ impl StockPulseApi {
             HeaderValue::from_str(&self.api_key).unwrap());
         headers
     }
-    pub async fn request_multi_quote(&self, stocks: &String) -> Result<Value, Error> {
+    pub async fn request_multi_quote(&self, stocks: &String, protocol: &String) -> Result<Value, Error> {
         info!("Calling StockPulseApi's 'multi_quote' endpoint.");
-        let url = format!("{}/multi-quote/{stocks}", &self.host);
+        let url = format!("{protocol}://{}/multi-quote/{stocks}", &self.host);
         debug!("Url: {}", &url);
         let client = Client::new();
         let response: Value = client.get(url)
@@ -77,8 +77,7 @@ mod stock_pulse_api_tests {
     #[tokio::test]
     async fn test_request_multi_quote() {
         let mut server = mockito::Server::new_async().await;
-        let url = server.url();
-        println!("Host: {}", url);
+        let host_with_port = server.host_with_port().replace("https://", "");
 
         let _mock = server.mock("GET", "/multi-quote/AAPL")
             .with_header("content-type", "application/json")
@@ -91,12 +90,13 @@ mod stock_pulse_api_tests {
             .create_async().await;
 
         let api = StockPulseApi {
-            host: url,
+            host: host_with_port,
             api_key: "test_api_key".to_string(),
         };
 
         let stocks = "AAPL".to_string();
-        let response = api.request_multi_quote(&stocks).await.unwrap();
+        let protocol = "http".to_string();
+        let response = api.request_multi_quote(&stocks, &protocol).await.unwrap();
 
         // Check the response body
         assert_eq!(response["symbol"], "AAPL");
