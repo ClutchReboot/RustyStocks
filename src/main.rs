@@ -5,10 +5,11 @@ use clap::Parser;
 use serde_json::Value;
 
 #[derive(Parser)]
+#[command(version, about)]
 pub struct Cli {
     #[arg(long, help="Hostname RapidAPI provided. Example: 'fake-finance123.p.rapidapi.com'")]
     host: Option<String>,
-    #[arg(short, long, help="Provided from StockPulse at RapidAPI's marketplace here: https://rapidapi.com/manwilbahaa/api/yahoo-finance127")]
+    #[arg(short, long, help="Provided from StockPulse at RapidAPI's marketplace.")]
     api_key: Option<String>,
     #[arg(short, long, help="Include the NASDAQ symbols with comma delimiter. Example: 'tsla,aapl,msft'")]
     stocks: Option<String>,
