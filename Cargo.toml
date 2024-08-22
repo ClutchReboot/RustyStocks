@@ -2,6 +2,7 @@
 name = "rusty_stocks"
 version = "0.1.1"
 edition = "2021"
+description = "Simple to use tool the works with 'Stock Pulse' from RapidAPI's marketplace."
 
 [dependencies]
 clap = "4.5.16"
