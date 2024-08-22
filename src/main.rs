@@ -6,11 +6,11 @@ use serde_json::Value;
 
 #[derive(Parser)]
 pub struct Cli {
-    #[arg(long)]
+    #[arg(long, help="Hostname StockPulse provided. Example: 'https://fake.not_real_link.com:443'")]
     host: Option<String>,
-    #[arg(short, long)]
+    #[arg(short, long, help="Provided from StockPulse at RapidAPI's marketplace here: https://rapidapi.com/manwilbahaa/api/yahoo-finance127")]
     api_key: Option<String>,
-    #[arg(short, long)]
+    #[arg(short, long, help="Include the NASDAQ symbols with comma delimiter. Example: 'tsla,aapl,msft'")]
     stocks: Option<String>,
     #[command(flatten)]
     verbose: clap_verbosity_flag::Verbosity,
